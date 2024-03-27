@@ -16,9 +16,6 @@ const settingsButton = document.getElementById("settings-button");
 settingsButton.addEventListener("click", () => {
     speed = document.getElementById("speed").value;
     tarzanStaggerFrames = Math.floor(speed / 1.5);
-    textLength = document.getElementById("characters").value;
-    randomStartIndex = Math.floor(Math.random() * (text.length - 200));
-    trimmedText = text.slice(randomStartIndex, randomStartIndex + textLength);
 });
 
 const tarzan = document.getElementById("tarzan");
