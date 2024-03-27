@@ -57,7 +57,7 @@ body {
 
 .cloud {
     position: relative;
-    right: -100VW;
+    right: -100vw;
 }
 
 @keyframes orcaMoveLeft {

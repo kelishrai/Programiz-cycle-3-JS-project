@@ -33,17 +33,7 @@ function animateTarzan() {
     tarzanC.clearRect(0, 0, tarzanWidth, tarzanHeight);
 
     if (nextTarzanImage >= 0.85 * 6) nextTarzanImage = 0;
-    tarzanC.drawImage(
-        tarzanImage,
-        tarzanWidth * nextTarzanImage,
-        0,
-        tarzanWidth,
-        tarzanHeight,
-        0,
-        0,
-        tarzanWidth,
-        tarzanHeight
-    );
+    tarzanC.drawImage(tarzanImage, tarzanWidth * nextTarzanImage, 0, tarzanWidth, tarzanHeight, 0, 0, tarzanWidth, tarzanHeight);
     requestAnimationFrame(animateTarzan);
     tarzanGameFrame++;
 
@@ -63,17 +53,7 @@ function animateOrca() {
     orcaC.clearRect(0, 0, orcaWidth, orcaHeight);
 
     if (nextOrcaImage >= 0.6 * 8) nextOrcaImage = 0;
-    orcaC.drawImage(
-        orcaImage,
-        0,
-        orcaHeight * nextOrcaImage,
-        orcaWidth,
-        orcaHeight,
-        0,
-        0,
-        orcaWidth,
-        orcaHeight
-    );
+    orcaC.drawImage(orcaImage, 0, orcaHeight * nextOrcaImage, orcaWidth, orcaHeight, 0, 0, orcaWidth, orcaHeight);
     requestAnimationFrame(animateOrca);
     orcaGameFrame++;
 
@@ -90,9 +70,7 @@ textArea.addEventListener("focus", (event) => {
     const startTime = new Date().getTime();
     const inputChecker = () => {
         const inputText = textArea.value;
-        if (
-            inputText[inputText.length - 1] === trimmedText[inputText.length - 1]
-        ) {
+        if (inputText[inputText.length - 1] === trimmedText[inputText.length - 1]) {
             tarzanTop -= 20;
             if (tarzanTop <= 0) tarzanTop = 0;
             tarzan.style.top = `${tarzanTop}px`;
