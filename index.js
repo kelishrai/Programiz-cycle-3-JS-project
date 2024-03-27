@@ -26,14 +26,24 @@ const tarzanC = tarzan.getContext("2d");
 const tarzanWidth = (tarzan.width = 80);
 const tarzanHeight = (tarzan.height = 50);
 const tarzanImage = new Image();
-tarzanImage.src = "assets/tarzan.png";
+tarzanImage.src = "assets/images/tarzan.png";
 let nextTarzanImage = 0;
 let tarzanGameFrame = 0;
 function animateTarzan() {
     tarzanC.clearRect(0, 0, tarzanWidth, tarzanHeight);
 
     if (nextTarzanImage >= 0.85 * 6) nextTarzanImage = 0;
-    tarzanC.drawImage(tarzanImage, tarzanWidth * nextTarzanImage, 0, tarzanWidth, tarzanHeight, 0, 0, tarzanWidth, tarzanHeight);
+    tarzanC.drawImage(
+        tarzanImage,
+        tarzanWidth * nextTarzanImage,
+        0,
+        tarzanWidth,
+        tarzanHeight,
+        0,
+        0,
+        tarzanWidth,
+        tarzanHeight
+    );
     requestAnimationFrame(animateTarzan);
     tarzanGameFrame++;
 
@@ -45,7 +55,7 @@ const orcaC = orca.getContext("2d");
 const orcaWidth = (orca.width = 200);
 const orcaHeight = (orca.height = 90);
 const orcaImage = new Image();
-orcaImage.src = "assets/orca.png";
+orcaImage.src = "assets/images/orca.png";
 let nextOrcaImage = 0;
 let orcaGameFrame = 0;
 const orcaStaggerFrames = 15;
@@ -53,7 +63,17 @@ function animateOrca() {
     orcaC.clearRect(0, 0, orcaWidth, orcaHeight);
 
     if (nextOrcaImage >= 0.6 * 8) nextOrcaImage = 0;
-    orcaC.drawImage(orcaImage, 0, orcaHeight * nextOrcaImage, orcaWidth, orcaHeight, 0, 0, orcaWidth, orcaHeight);
+    orcaC.drawImage(
+        orcaImage,
+        0,
+        orcaHeight * nextOrcaImage,
+        orcaWidth,
+        orcaHeight,
+        0,
+        0,
+        orcaWidth,
+        orcaHeight
+    );
     requestAnimationFrame(animateOrca);
     orcaGameFrame++;
 
@@ -70,7 +90,9 @@ textArea.addEventListener("focus", (event) => {
     const startTime = new Date().getTime();
     const inputChecker = () => {
         const inputText = textArea.value;
-        if (inputText[inputText.length - 1] === trimmedText[inputText.length - 1]) {
+        if (
+            inputText[inputText.length - 1] === trimmedText[inputText.length - 1]
+        ) {
             tarzanTop -= 20;
             if (tarzanTop <= 0) tarzanTop = 0;
             tarzan.style.top = `${tarzanTop}px`;
