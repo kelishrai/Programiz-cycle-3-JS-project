@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Demo Project</title>
+        <link rel="stylesheet" href="index.css" />
+        <script type="module" src="index.js"></script>
+    </head>
+    <body>
+        <div id="sky">
+            <img
+                class="cloud top-first cloud-animation-first"
+                src="/assets/cloud.png"
+            />
+            <img
+                class="cloud top-second cloud-animation-second"
+                src="/assets/cloud.png"
+            />
+            <img
+                class="cloud top-third cloud-animation-third"
+                src="/assets/cloud.png"
+            />
+        </div>
+        <div id="water">
+            <div id="text-box">
+                <p id="text-screen">
+                    Click the box and your text will appear here
+                </p>
+                <div style="height: 10px"></div>
+                <textarea id="typing-area"></textarea>
+            </div>
+        </div>
+        <div id="water-screen">
+            <canvas id="tarzan"></canvas>
+            <canvas id="orca"></canvas>
+        </div>
+        <h1 id="end-text"></h1>
+        <div id="console">
+            <label>Speed</label>
+            <input id="speed" type="text" placeholder="30" />
+            <label>Characters</label>
+            <input id="characters" type="text" placeholder="200" />
+            <div style="height: 10px"></div>
+            <button id="settings-button">Set</button>
+        </div>
+    </body>
+</html>
