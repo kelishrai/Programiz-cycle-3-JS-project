@@ -38,21 +38,54 @@ body {
 
 @keyframes cloud-move {
     0% {
-        transform: scale();
+        transform: scale(1);
     }
     25% {
-        transform: scale();
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
     }
 }
 
 .cloud {
     position: absolute;
-    top: 20px;
     width: 100px;
     height: 50px;
     background: url("assets/images/cloud.png") no-repeat;
     background-size: contain;
-    animation: cloud-move 10s linear infinite;
+    animation: cloud-move 10s infinite;
+}
+
+.cloud-1 {
+    left: 20px;
+    top: 20px;
+}
+
+.cloud-2 {
+    left: 220px;
+    top: 40px;
+}
+
+.cloud-3 {
+    left: 420px;
+    top: 30px;
+}
+
+.cloud-4 {
+    left: 620px;
+    top: 60px;
+}
+
+.cloud-5 {
+    left: 820px;
+    top: 20px;
 }
 
 @keyframes orca-move-left {
@@ -94,6 +127,7 @@ body {
 }
 
 #game-prompts {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 8em;
     position: absolute;
