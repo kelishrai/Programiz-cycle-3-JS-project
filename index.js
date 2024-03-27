@@ -1,21 +1,29 @@
 import text from "./assets/text.js";
 
-const sky = document.getElementById("sky");
-
 let finished = false;
-
 let speed = 30;
-let textLength = 200;
+let textLength = 100;
 let randomStartIndex = Math.floor(Math.random() * (text.length - 200));
 let trimmedText = text.slice(randomStartIndex, randomStartIndex + textLength);
+let tarzanStaggerFrames = 20;
 
-let tarzanStaggerFrames = 15;
+const speedButtonFast = document.getElementById("speed-button--fast");
+const speedButtonMedium = document.getElementById("speed-button--medium");
+const speedButtonSlow = document.getElementById("speed-button--slow");
 
-const settingsButton = document.getElementById("settings-button");
+speedButtonFast.addEventListener("click", () => {
+    speed = 15;
+    tarzanStaggerFrames = 8;
+});
 
-settingsButton.addEventListener("click", () => {
-    speed = document.getElementById("speed").value;
-    tarzanStaggerFrames = Math.floor(speed / 1.5);
+speedButtonMedium.addEventListener("click", () => {
+    speed = 40;
+    tarzanStaggerFrames = 20;
+});
+
+speedButtonSlow.addEventListener("click", () => {
+    speed = 65;
+    tarzanStaggerFrames = 32;
 });
 
 const tarzan = document.getElementById("tarzan");
@@ -26,21 +34,12 @@ const tarzanImage = new Image();
 tarzanImage.src = "assets/images/tarzan.png";
 let nextTarzanImage = 0;
 let tarzanGameFrame = 0;
+
 function animateTarzan() {
     tarzanC.clearRect(0, 0, tarzanWidth, tarzanHeight);
 
     if (nextTarzanImage >= 0.85 * 6) nextTarzanImage = 0;
-    tarzanC.drawImage(
-        tarzanImage,
-        tarzanWidth * nextTarzanImage,
-        0,
-        tarzanWidth,
-        tarzanHeight,
-        0,
-        0,
-        tarzanWidth,
-        tarzanHeight
-    );
+    tarzanC.drawImage(tarzanImage, tarzanWidth * nextTarzanImage, 0, tarzanWidth, tarzanHeight, 0, 0, tarzanWidth, tarzanHeight);
     requestAnimationFrame(animateTarzan);
     tarzanGameFrame++;
 
@@ -56,21 +55,12 @@ orcaImage.src = "assets/images/orca.png";
 let nextOrcaImage = 0;
 let orcaGameFrame = 0;
 const orcaStaggerFrames = 15;
+
 function animateOrca() {
     orcaC.clearRect(0, 0, orcaWidth, orcaHeight);
 
     if (nextOrcaImage >= 0.6 * 8) nextOrcaImage = 0;
-    orcaC.drawImage(
-        orcaImage,
-        0,
-        orcaHeight * nextOrcaImage,
-        orcaWidth,
-        orcaHeight,
-        0,
-        0,
-        orcaWidth,
-        orcaHeight
-    );
+    orcaC.drawImage(orcaImage, 0, orcaHeight * nextOrcaImage, orcaWidth, orcaHeight, 0, 0, orcaWidth, orcaHeight);
     requestAnimationFrame(animateOrca);
     orcaGameFrame++;
 
@@ -87,10 +77,8 @@ textArea.addEventListener("focus", (event) => {
     const startTime = new Date().getTime();
     const inputChecker = () => {
         const inputText = textArea.value;
-        if (
-            inputText[inputText.length - 1] === trimmedText[inputText.length - 1]
-        ) {
-            tarzanTop -= 20;
+        if (inputText[inputText.length - 1] === trimmedText[inputText.length - 1]) {
+            tarzanTop -= 5;
             if (tarzanTop <= 0) tarzanTop = 0;
             tarzan.style.top = `${tarzanTop}px`;
             console.log(inputText[inputText.length - 1]);
@@ -102,9 +90,6 @@ textArea.addEventListener("focus", (event) => {
             console.log("finished");
             console.log(totalTime);
             textArea.removeEventListener("input", inputChecker);
-            setTimeout(() => {
-                location.reload();
-            }, 2500);
             finished = true;
         }
     };
@@ -112,14 +97,19 @@ textArea.addEventListener("focus", (event) => {
 
     const gameRun = setInterval(() => {
         if (finished) {
-            document.getElementById("end-text").textContent = "Play Again?";
+            document.getElementById("game-prompts").textContent = "Play Again?";
             setTimeout(() => {
-                location.reload();
+                document.getElementById("game-prompts").textContent = null;
+                textArea.blur();
+                clearInterval(gameRun);
+                tarzanTop = 0;
+                tarzan.style.top = `${tarzanTop}px`;
+                orca.classList.remove("orca-animation");
+                finished = false;
             }, 2500);
-            clearInterval(gameRun);
         }
 
-        if (tarzanTop <= 200) {
+        if (tarzanTop <= 195) {
             tarzanTop += 1;
             tarzan.style.top = `${tarzanTop}px`;
         } else {

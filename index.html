@@ -8,28 +8,36 @@
         <script type="module" src="index.js"></script>
     </head>
     <body>
-        <div id="sky">
-            <img class="cloud top-first cloud-animation-first" src="assets/images/cloud.png" />
-            <img class="cloud top-second cloud-animation-second" src="assets/images/cloud.png" />
-            <img class="cloud top-third cloud-animation-third" src="assets/images/cloud.png" />
-        </div>
-        <div id="water">
-            <div id="text-box">
-                <p id="text-screen">Click the box and your text will appear here</p>
-                <div style="height: 10px"></div>
-                <textarea id="typing-area"></textarea>
+        <div id="game-screen">
+            <div id="sky">
+                <div class="cloud"></div>
+                <div class="cloud"></div>
+                <div class="cloud"></div>
+                <div class="cloud"></div>
+            </div>
+            <div id="water-screen">
+                <canvas id="tarzan"></canvas>
+                <canvas id="orca"></canvas>
             </div>
         </div>
-        <div id="water-screen">
-            <canvas id="tarzan"></canvas>
-            <canvas id="orca"></canvas>
-        </div>
-        <h1 id="end-text"></h1>
+        <p id="game-prompts"></p>
         <div id="console">
-            <label>Speed</label>
-            <input id="speed" type="text" placeholder="30" />
-            <div style="height: 10px"></div>
-            <button id="settings-button">Set</button>
+            <div id="text-box">
+                <div class="div-h"></div>
+                <p id="text-screen"></p>
+                <div class="div-h"></div>
+                <textarea id="typing-area" placeholder="Click here to start typing test"></textarea>
+            </div>
+            <div class="div-h"></div>
+            <div class="settings">
+                <label>Speed</label>
+                <div>
+                    <div class="div-h"></div>
+                    <button id="speed-button--fast" class="speed-button">Fast</button>
+                    <button id="speed-button--medium" class="speed-button">Medium</button>
+                    <button id="speed-button--slow" class="speed-button">Slow</button>
+                </div>
+            </div>
         </div>
     </body>
 </html>

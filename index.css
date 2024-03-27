@@ -1,122 +1,82 @@
+:root {
+    --screen-height: 500px;
+    --screen-width: 1000px;
+    --div-h: 20px;
+}
+
+.div-h {
+    height: var(--div-h);
+}
+
 * {
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-color: #1f5d8b;
+    align-items: center;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
     height: 100vh;
     overflow: hidden;
     width: 100vw;
 }
 
+#game-screen {
+    height: var(--screen-height);
+    width: var(--screen-width);
+}
+
 #sky {
     background-color: #1f5d8b;
-    height: 50vh;
-    width: 100vw;
+    position: relative;
+    overflow: hidden;
+    width: var(--screen-width);
+    height: calc(var(--screen-height) / 2);
 }
 
-#end-text {
-    position: absolute;
-    top: 20vh;
-    left: 45vw;
-}
-
-@keyframes moveLeft {
-    from {
-        transform: translateX(10vw);
+@keyframes cloud-move {
+    0% {
+        transform: scale();
     }
-    to {
-        transform: translateX(-100vw);
+    25% {
+        transform: scale();
     }
-}
-
-.cloud-animation-first {
-    animation: moveLeft 10s linear infinite forwards;
-}
-
-.cloud-animation-second {
-    animation: moveLeft 10s linear 3s infinite forwards;
-}
-
-.cloud-animation-third {
-    animation: moveLeft 10s linear 6s infinite forwards;
-}
-
-.top-first {
-    top: 50px;
-}
-
-.top-second {
-    top: 90px;
-}
-
-.top-third {
-    top: 10px;
 }
 
 .cloud {
-    position: relative;
-    right: -100vw;
+    position: absolute;
+    top: 20px;
+    width: 100px;
+    height: 50px;
+    background: url("assets/images/cloud.png") no-repeat;
+    background-size: contain;
+    animation: cloud-move 10s linear infinite;
 }
 
-@keyframes orcaMoveLeft {
+@keyframes orca-move-left {
     from {
-        left: 100vw;
+        left: var(--screen-width);
     }
     to {
-        left: 5vw;
+        left: 40px;
     }
 }
 
 .orca-animation {
-    animation: orcaMoveLeft 3s 1;
-}
-
-#water {
-    align-items: end;
-    background: linear-gradient(#82a9c6, #04253e);
-    display: flex;
-    height: 50vh;
-    width: 100vw;
-}
-
-#text-box {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    height: 20vh;
-    justify-content: center;
-    padding: 0 10px;
-    position: relative;
-    width: 100vw;
-}
-
-#text-screen {
-    font-family: "Times New Roman";
-    font-size: 16px;
-}
-
-#typing-area {
-    height: 30%;
-    font-family: "Times New Roman";
-    font-size: 16px;
-    color: black;
-    padding: 10px;
-    resize: vertical;
-    width: 83.7%;
-    z-index: 2;
+    animation: orca-move-left 3s 1;
 }
 
 #water-screen {
-    position: absolute;
-    top: 50vh;
-    height: 50vh;
-    width: 100vw;
-    z-index: 1;
+    background: linear-gradient(#82a9c6, #04253e);
+    height: calc(var(--screen-height) / 2);
+    overflow: hidden;
+    width: var(--screen-width);
 }
 
 #tarzan {
+    /* border: 1px solid white; */
     height: 50px;
     left: 100px;
     position: relative;
@@ -125,17 +85,59 @@ body {
 }
 
 #orca {
-    height: 45px;
-    right: -136px;
-    position: absolute;
+    /* border: 1px solid white; */
+    height: 40px;
+    position: relative;
+    left: var(--screen-width);
+    top: 180px;
     width: 120px;
-    top: 200px;
+}
+
+#game-prompts {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 8em;
+    position: absolute;
 }
 
 #console {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 30vh;
-    right: 10vw;
+}
+
+#text-box {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+}
+
+#text-screen {
+    display: flex;
+    font-family: "Times New Roman";
+    font-size: 16px;
+    flex-direction: column;
+    height: 1em;
+    justify-content: center;
+}
+
+#typing-area {
+    height: 1.2em;
+    font-family: "Times New Roman";
+    font-size: 16px;
+    color: black;
+    padding: 10px;
+    resize: vertical;
+    width: 85%;
+}
+
+.settings {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.speed-button {
+    width: 60px;
 }
