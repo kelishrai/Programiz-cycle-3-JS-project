@@ -4,7 +4,7 @@ let finished = false;
 let speed = 30;
 let textLength = 100;
 let randomStartIndex = Math.floor(Math.random() * (text.length - 200));
-let trimmedText = text.slice(randomStartIndex, randomStartIndex + textLength);
+let trimmedText = text.slice(randomStartIndex, randomStartIndex + textLength).trim();
 let tarzanStaggerFrames = 20;
 
 const speedButtonFast = document.getElementById("speed-button--fast");
@@ -99,12 +99,14 @@ textArea.addEventListener("focus", (event) => {
     const gameRun = setInterval(() => {
         if (finished) {
             document.getElementById("game-prompts").textContent = "Play Again?";
+            textArea.blur();
+            clearInterval(gameRun);
             setTimeout(() => {
-                document.getElementById("game-prompts").textContent = null;
-                textArea.blur();
-                clearInterval(gameRun);
                 tarzanTop = 0;
+                textScreen.textContent = null;
+                textArea.value = null;
                 tarzan.style.top = `${tarzanTop}px`;
+                document.getElementById("game-prompts").textContent = null;
                 orca.classList.remove("orca-animation");
                 finished = false;
             }, 2500);
