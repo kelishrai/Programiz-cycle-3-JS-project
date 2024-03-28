@@ -85,14 +85,15 @@ textArea.addEventListener("focus", (event) => {
         }
 
         if (inputText == trimmedText) {
+            finished = true;
             const endTime = new Date().getTime();
             const totalTime = (endTime - startTime) / 1000;
             console.log("finished");
             console.log(totalTime);
             textArea.removeEventListener("input", inputChecker);
-            finished = true;
         }
     };
+
     textArea.addEventListener("input", inputChecker);
 
     const gameRun = setInterval(() => {
